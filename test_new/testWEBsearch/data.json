@@ -1,0 +1,37 @@
+[
+    {
+      "name":"boom",
+       "body":"boom play game"
+    },
+    {
+      "name":"ton",
+       "body":"boom and ton play game"
+    },
+    {
+       "name":"am",
+        "body":"am sleep "
+
+    },
+    {
+       "name":"tum",
+       "body":"tum and am play tennis"
+
+    },
+    {
+       "name":"oog"
+    },
+    {
+       
+        "tile":"สวัสดี ผม ชื่อบูมครับ"
+    },
+     {
+        "name":"กินข้าว",
+        "tile":"กินข้าวหรือยังจ๊ะ",
+         "body":"กิน เเล้ว จ๊ะ"
+    },
+     {
+        "name":"กินข้าว",
+        "tile":"บูม กิน ข้าว หรือ ยัง จ๊ะ"
+    }
+    
+]

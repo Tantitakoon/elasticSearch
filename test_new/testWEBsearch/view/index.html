@@ -1,0 +1,114 @@
+<html>
+<head>
+    
+  <title>Express HTML</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>
+  $(document).ready(function(){
+                // $("input").keyup(function(){
+                //     var txt = $("input").val();
+                //     $.post("demo_ajax_gethint.asp", {suggest: txt}, function(result){
+                //         $("span").html(result);
+                //     });
+                // });
+                $("#search").click(function(){
+                     //alert("search");
+                      var myNode = document.getElementById("showData");
+                        while (myNode.firstChild) {
+                            myNode.removeChild(myNode.firstChild);
+                        }
+                    var txt = $("#AA").val();
+                     $.post("/search",
+                            {
+                                param: txt,
+                            },
+                            function(data, status){
+                             
+                              for(i=0;i<data.length;i++){
+                                   var node = document.createElement("div");   
+                                   node.innerHTML =`<h5>${ JSON.stringify(data[i])}</h5>`
+                                   document.getElementById("showData").appendChild(node);  
+                              }                              
+                            
+                            $("#response").html("number of data : "+data.length);
+                            });
+                     
+               }); 
+
+                 $("#deleteIndex").click(function(){   
+                  // alert("delete");
+                   var myNode = document.getElementById("showData");  
+                     while (myNode.firstChild) {
+                            myNode.removeChild(myNode.firstChild);
+                        }
+                      $.get("/deleteIndex", function(data, status){});
+                        $("#response").html("delete success");
+
+                        // setTimeout(
+                        //   function(){
+                        //       $("#response").html(" ");
+                        //     }, 1000);
+
+                 }); 
+
+                  $("#createIndex").click(function(){   
+                      //alert("#createIndex");
+                    var myNode = document.getElementById("showData");
+                      while (myNode.firstChild) {
+                            myNode.removeChild(myNode.firstChild);
+                        }  
+                      $.get("/createIndex", function(data, status){});
+                        $("#response").html("createIndex success");
+
+                        // setTimeout(
+                        //   function(){
+                        //       $("#response").html(" ");
+                        //     }, 1000);
+
+                 }); 
+
+                 
+
+
+   });
+  </script>
+</head>
+<body>
+  <div style="margin:100px;">
+    <nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Express HTML</a>
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/about">About</a>
+      </li>
+      <li>
+        <a href="/sitemap">Sitemap</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    <div class="jumbotron"  style="padding:40px;">
+      <h1>Hello, world!</h1>
+      <div class="search-container">
+      
+      <!--p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p-->
+      <input id="AA"type="text" placeholder="Search.." name="search">
+      <button id='search' class="btn btn-primary btn-lg"  >search</button>    
+      <button id='deleteIndex' class="btn btn-primary btn-lg"  >deleteIndex</button>    
+        <button id='createIndex' class="btn btn-primary btn-lg"  >createIndex</button>    
+    </div>
+     <p id="response">  </p>
+     <div id="showData">
+
+     </div>
+  </div>
+</body>
+</html>
